@@ -40,11 +40,12 @@ if prompt := st.chat_input("Ask anything about general topics..."):
             message_placeholder = st.empty()
             
             try:
-                # API Key Configure
+                # सीधे API की सेट करें
                 genai.configure(api_key=api_key)
                 
-                # Using the absolute working stable model name for legacy google-generativeai
-                model = genai.GenerativeModel('gemini-1.5-flash')
+                # मॉडल नाम के आगे models/ लगाने से यह सीधे नए v1 सर्वर पर चलता है
+                model = genai.GenerativeModel('models/gemini-1.5-flash')
+    
                 
                 # Request generation
                 response = model.generate_content(prompt)
