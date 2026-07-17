@@ -83,7 +83,7 @@ if prompt := st.chat_input("Ask anything about the video or general topics..."):
             
             try:
                 # Using stable gemini-1.5-flash model
-                model = genai.GenerativeModel('gemini-1.5-flash')
+                model = genai.GenerativeModel('gemini-pro')
                 response = model.generate_content(f"{context}User Question: {prompt}")
                 full_response = response.text
                 message_placeholder.markdown(full_response)
