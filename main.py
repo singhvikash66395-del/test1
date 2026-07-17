@@ -44,7 +44,7 @@ if prompt := st.chat_input("Ask anything about general topics..."):
                 genai.configure(api_key=api_key)
                 
                 # मॉडल नाम के आगे models/ लगाने से यह सीधे नए v1 सर्वर पर चलता है
-                model = genai.GenerativeModel('models/gemini-1.5-flash')
+                model = genai.GenerativeModel('gemini-1.5-flash')
     
                 
                 # Request generation
