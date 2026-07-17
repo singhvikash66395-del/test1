@@ -42,7 +42,7 @@ if prompt := st.chat_input("Ask anything about general topics..."):
                 # नए SDK (google-genai) का सही तरीका
                 client = genai.Client(api_key=api_key)
                 response = client.models.generate_content(
-                    model='gemini-2.5-flash',
+                    model='gemini-2.5-flash-8b',
                     contents=prompt,
                 )
                 full_response = response.text
