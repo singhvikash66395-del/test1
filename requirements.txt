@@ -1,5 +1,3 @@
-pyinstaller
-twine
-build
-google-genai
-youtube-transcript-api
+google-generativeai
+youtube-transcripts-api
+streamlit
