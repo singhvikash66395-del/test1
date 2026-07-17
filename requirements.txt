@@ -2,3 +2,4 @@ pyinstaller
 twine
 build
 google-genai
+youtube-transcript-api
