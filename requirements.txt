@@ -1,3 +1,4 @@
 pyinstaller
 twine
 build
+google-genai
