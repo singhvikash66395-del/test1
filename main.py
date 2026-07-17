@@ -1,7 +1,5 @@
 import streamlit as st
-from google import genai
-from google.genai import types
-import os
+import google.generativeai as genai
 
 # Page Configuration
 st.set_page_config(page_title="AI Video Insights & Discussion Bot", page_icon="🤖", layout="wide")
@@ -12,11 +10,14 @@ st.caption("यहाँ कोई भी सवाल सीधे चैट �
 # Sidebar Configuration
 st.sidebar.header("⚙️ Configuration & Source")
 
-# Retrieve API Key from Secrets
+# Retrieve API Key from Secrets or Sidebar
 if "GEMINI_API_KEY" in st.secrets:
     api_key = st.secrets["GEMINI_API_KEY"]
 else:
     api_key = st.sidebar.text_input("Enter Gemini API Key:", type="password")
+
+if not api_key:
+    st.sidebar.warning("Please configure your Gemini API Key to proceed.")
 
 # Initialize Chat History
 if "messages" not in st.session_state:
@@ -39,12 +40,15 @@ if prompt := st.chat_input("Ask anything about general topics..."):
             message_placeholder = st.empty()
             
             try:
-                # नए SDK (google-genai) का सही तरीका
-                client = genai.Client(api_key=api_key)
-                response = client.models.generate_content(
-                    model='gemini-2.5-flash-8b',
-                    contents=prompt,
-                )
+                # API Key Configure
+                genai.configure(api_key=api_key)
+                
+                # Using the absolute working stable model name for legacy google-generativeai
+                model = genai.GenerativeModel('gemini-1.5-flash')
+                
+                # Request generation
+                response = model.generate_content(prompt)
+                
                 full_response = response.text
                 message_placeholder.markdown(full_response)
             except Exception as e:
